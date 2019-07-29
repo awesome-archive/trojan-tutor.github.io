@@ -93,18 +93,18 @@
   };
 </script>
 
-  <meta name="description" content="期望效果 panel与trojan共存。 前置条件  本文假设你已完全理解自建梯子教程 --trojan版本，否则请先按照自建梯子教程 --trojan版本配置好服务器； 不能使用root用户，但是要确保用户具有sudo权限，使用配置trojan的时候的同一个账户也是可以的。  配置 更新系统 123cdsudo apt updatesudo apt upgrade 安装依赖">
+  <meta name="description" content="期望效果panel与trojan共存。 前置条件 本文假设你已完全理解自建梯子教程 –trojan版本，否则请先按照自建梯子教程 –trojan版本配置好服务器； 不能使用root用户，但是要确保用户具有sudo权限，使用配置trojan的时候的同一个账户也是可以的。  配置更新系统123cdsudo apt updatesudo apt upgrade  安装依赖1sudo apt instal">
 <meta name="keywords" content="VPN,科学上网,代理工具,gfw,翻墙,vps,Ubuntu,服务器,trojan,trojan-gfw,Nginx,panel">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Trojan-Panel配置">
 <meta property="og:url" content="https://trojan-tutor.github.io/2019/06/08/p43.html">
 <meta property="og:site_name" content="trojan-tutor">
-<meta property="og:description" content="期望效果 panel与trojan共存。 前置条件  本文假设你已完全理解自建梯子教程 --trojan版本，否则请先按照自建梯子教程 --trojan版本配置好服务器； 不能使用root用户，但是要确保用户具有sudo权限，使用配置trojan的时候的同一个账户也是可以的。  配置 更新系统 123cdsudo apt updatesudo apt upgrade 安装依赖">
+<meta property="og:description" content="期望效果panel与trojan共存。 前置条件 本文假设你已完全理解自建梯子教程 –trojan版本，否则请先按照自建梯子教程 –trojan版本配置好服务器； 不能使用root用户，但是要确保用户具有sudo权限，使用配置trojan的时候的同一个账户也是可以的。  配置更新系统123cdsudo apt updatesudo apt upgrade  安装依赖1sudo apt instal">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:updated_time" content="2019-07-29T12:46:53.175Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Trojan-Panel配置">
-<meta name="twitter:description" content="期望效果 panel与trojan共存。 前置条件  本文假设你已完全理解自建梯子教程 --trojan版本，否则请先按照自建梯子教程 --trojan版本配置好服务器； 不能使用root用户，但是要确保用户具有sudo权限，使用配置trojan的时候的同一个账户也是可以的。  配置 更新系统 123cdsudo apt updatesudo apt upgrade 安装依赖">
+<meta name="twitter:description" content="期望效果panel与trojan共存。 前置条件 本文假设你已完全理解自建梯子教程 –trojan版本，否则请先按照自建梯子教程 –trojan版本配置好服务器； 不能使用root用户，但是要确保用户具有sudo权限，使用配置trojan的时候的同一个账户也是可以的。  配置更新系统123cdsudo apt updatesudo apt upgrade  安装依赖1sudo apt instal">
 
 
 
@@ -458,21 +458,18 @@
       
 
       
-        <h1 id="期望效果">期望效果</h1>
-<p>panel与trojan共存。</p>
-<h1 id="前置条件">前置条件</h1>
-<ol type="1">
-<li>本文假设你已完全理解<a href="/2019/04/10/p41.html">自建梯子教程 --trojan版本</a>，否则请先按照<a href="/2019/04/10/p41.html">自建梯子教程 --trojan版本</a>配置好服务器；</li>
+        <h1 id="期望效果"><a href="#期望效果" class="headerlink" title="期望效果"></a>期望效果</h1><p>panel与trojan共存。</p>
+<h1 id="前置条件"><a href="#前置条件" class="headerlink" title="前置条件"></a>前置条件</h1><ol>
+<li>本文假设你已完全理解<a href="/2019/04/10/p41.html">自建梯子教程 –trojan版本</a>，否则请先按照<a href="/2019/04/10/p41.html">自建梯子教程 –trojan版本</a>配置好服务器；</li>
 <li><strong><em>不能</em></strong>使用root用户，但是要确保用户具有sudo权限，使用配置trojan的时候的同一个账户也是可以的。</li>
 </ol>
-<h1 id="配置">配置</h1>
-<h2 id="更新系统">更新系统</h2>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cd</span><br><span class="line">sudo apt update</span><br><span class="line">sudo apt upgrade</span><br></pre></td></tr></table></figure>
-<h2 id="安装依赖">安装依赖</h2>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt install nginx mariadb-server php-fpm php-mysql curl git unzip php-cli php-xml php-json php-mbstring php-tokenizer php-bcmath</span><br></pre></td></tr></table></figure>
-<h2 id="配置数据库">配置数据库</h2>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo mysql_secure_installation</span><br></pre></td></tr></table></figure>
-<ol type="1">
+<h1 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h1><h2 id="更新系统"><a href="#更新系统" class="headerlink" title="更新系统"></a>更新系统</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cd</span><br><span class="line">sudo apt update</span><br><span class="line">sudo apt upgrade</span><br></pre></td></tr></table></figure>
+
+<h2 id="安装依赖"><a href="#安装依赖" class="headerlink" title="安装依赖"></a>安装依赖</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt install nginx mariadb-server php-fpm php-mysql curl git unzip php-cli php-xml php-json php-mbstring php-tokenizer php-bcmath</span><br></pre></td></tr></table></figure>
+
+<h2 id="配置数据库"><a href="#配置数据库" class="headerlink" title="配置数据库"></a>配置数据库</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo mysql_secure_installation</span><br></pre></td></tr></table></figure>
+
+<ol>
 <li>这里要输入数据库的root用户的密码，由于是新安装的数据库，故直接回车就好；</li>
 <li>y，设置数据库密码，一会儿要用，建议与trojan的全局密码相同，方便记忆，因为配置完panel之后trojan的全局密码就没用了。</li>
 <li>数据库密码；</li>
@@ -480,39 +477,42 @@
 <li>四个y。</li>
 </ol>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo mysql -u root -p</span><br></pre></td></tr></table></figure>
+
 <p>输入数据库root用户的密码，该密码是在配置数据库的时候设置的。</p>
 <p>下面的两条命令创建了一个叫trojan的数据库和一个叫trojan数据库用户，trojan的密码为password，建议与trojan的全局密码相同，后面要用。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">CREATE DATABASE trojan;</span><br><span class="line">GRANT ALL PRIVILEGES ON trojan.* to trojan@&apos;%&apos; IDENTIFIED BY &apos;&lt;password&gt;&apos;;</span><br></pre></td></tr></table></figure>
+
 <p>下面的命令重新加载privileges并检查配置是否成功，随后退出mysql。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">FLUSH PRIVILEGES;</span><br><span class="line">SHOW DATABASES;</span><br><span class="line">SELECT User FROM mysql.user;</span><br><span class="line">quit</span><br></pre></td></tr></table></figure>
-<h2 id="安装php软件包管理系统">安装PHP软件包管理系统</h2>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cd /var/www</span><br><span class="line">sudo curl -sS https://getcomposer.org/installer -o composer-setup.php</span><br><span class="line">sudo php composer-setup.php --install-dir=/usr/local/bin --filename=composer</span><br></pre></td></tr></table></figure>
-<h2 id="安装nodejs和npm">安装NodeJS和npm</h2>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">curl -sL https://deb.nodesource.com/setup_10.x | sudo -E bash -</span><br><span class="line">sudo apt install nodejs</span><br><span class="line">node -v</span><br><span class="line">npm -v</span><br></pre></td></tr></table></figure>
-<h2 id="安装trojan-panel">安装trojan-panel</h2>
-<p>注意，下面的命令中<test>修改为你当前用户名和组名，不理解请参考<a href="/2019/04/10/p41.html">自建梯子教程 --trojan版本</a>。如果使用root用户执行<code>npm install</code>是会报错的，如果非要使用root执行的话，那么在前面加<code>sudo</code>可以解决。</test></p>
+
+<h2 id="安装PHP软件包管理系统"><a href="#安装PHP软件包管理系统" class="headerlink" title="安装PHP软件包管理系统"></a>安装PHP软件包管理系统</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cd /var/www</span><br><span class="line">sudo curl -sS https://getcomposer.org/installer -o composer-setup.php</span><br><span class="line">sudo php composer-setup.php --install-dir=/usr/local/bin --filename=composer</span><br></pre></td></tr></table></figure>
+
+<h2 id="安装NodeJS和npm"><a href="#安装NodeJS和npm" class="headerlink" title="安装NodeJS和npm"></a>安装NodeJS和npm</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">curl -sL https://deb.nodesource.com/setup_10.x | sudo -E bash -</span><br><span class="line">sudo apt install nodejs</span><br><span class="line">node -v</span><br><span class="line">npm -v</span><br></pre></td></tr></table></figure>
+
+<h2 id="安装trojan-panel"><a href="#安装trojan-panel" class="headerlink" title="安装trojan-panel"></a>安装trojan-panel</h2><p>注意，下面的命令中<test>修改为你当前用户名和组名，不理解请参考<a href="/2019/04/10/p41.html">自建梯子教程 –trojan版本</a>。如果使用root用户执行<code>npm install</code>是会报错的，如果非要使用root执行的话，那么在前面加<code>sudo</code>可以解决。</test></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">sudo git clone https://github.com/trojan-gfw/trojan-panel.git</span><br><span class="line">sudo chown -R &lt;test&gt;:&lt;test&gt; trojan-panel</span><br><span class="line">cd trojan-panel</span><br><span class="line">composer install</span><br><span class="line">npm install</span><br></pre></td></tr></table></figure>
-<h2 id="配置trojan-panel运行环境">配置trojan-panel运行环境</h2>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cp .env.example .env</span><br><span class="line">php artisan key:generate</span><br><span class="line">vi .env</span><br></pre></td></tr></table></figure>
+
+<h2 id="配置trojan-panel运行环境"><a href="#配置trojan-panel运行环境" class="headerlink" title="配置trojan-panel运行环境"></a>配置trojan-panel运行环境</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cp .env.example .env</span><br><span class="line">php artisan key:generate</span><br><span class="line">vi .env</span><br></pre></td></tr></table></figure>
+
 <p>其中APP_URL和DB_PASSWORD分别是你的域名和数据库密码。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">php artisan migrate</span><br></pre></td></tr></table></figure>
-<h2 id="赋予权限">赋予权限</h2>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd</span><br><span class="line">sudo chown -R www-data:www-data /var/www/trojan-panel</span><br></pre></td></tr></table></figure>
-<h2 id="配置nginx">配置Nginx</h2>
-<p>将下面这段代码拷贝到记事本，然后参考<a href="/2019/04/10/p41.html#nginxconfig">自建梯子教程 --trojan版本</a>中配置Nginx节的说明修改。另外一个要修改的地方是这段代码中的config关键字，你大可以修改为你自己喜欢的而且不易被猜中的。编辑好这段代码之后之后再拷贝到Xshell执行。</p>
-<p><strong><em>该命令会覆盖系统中现有的nginx配置，如果你的nginx配置文件已经有服务请自己写入而不是用此脚本写入，注意其中使用'\'转义的地方要调整。</em></strong></p>
-<p><strong><em>该命令会覆盖系统中现有的nginx配置，如果你的nginx配置文件已经有服务请自己写入而不是用此脚本写入，注意其中使用'\'转义的地方要调整。</em></strong></p>
-<p><strong><em>该命令会覆盖系统中现有的nginx配置，如果你的nginx配置文件已经有服务请自己写入而不是用此脚本写入，注意其中使用'\'转义的地方要调整。</em></strong></p>
+
+<h2 id="赋予权限"><a href="#赋予权限" class="headerlink" title="赋予权限"></a>赋予权限</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd</span><br><span class="line">sudo chown -R www-data:www-data /var/www/trojan-panel</span><br></pre></td></tr></table></figure>
+
+<h2 id="配置Nginx"><a href="#配置Nginx" class="headerlink" title="配置Nginx"></a>配置Nginx</h2><p>将下面这段代码拷贝到记事本，然后参考<a href="/2019/04/10/p41.html#nginxconfig">自建梯子教程 –trojan版本</a>中配置Nginx节的说明修改。另外一个要修改的地方是这段代码中的config关键字，你大可以修改为你自己喜欢的而且不易被猜中的。编辑好这段代码之后之后再拷贝到Xshell执行。</p>
+<p><strong><em>该命令会覆盖系统中现有的nginx配置，如果你的nginx配置文件已经有服务请自己写入而不是用此脚本写入，注意其中使用’\‘转义的地方要调整。</em></strong></p>
+<p><strong><em>该命令会覆盖系统中现有的nginx配置，如果你的nginx配置文件已经有服务请自己写入而不是用此脚本写入，注意其中使用’\‘转义的地方要调整。</em></strong></p>
+<p><strong><em>该命令会覆盖系统中现有的nginx配置，如果你的nginx配置文件已经有服务请自己写入而不是用此脚本写入，注意其中使用’\‘转义的地方要调整。</em></strong></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line">sudo bash -c &apos;echo &quot;</span><br><span class="line">server &#123;</span><br><span class="line">    listen 127.0.0.1:80 default_server;</span><br><span class="line"></span><br><span class="line">    server_name &lt;tdom.ml&gt;;</span><br><span class="line"></span><br><span class="line">    location / &#123;</span><br><span class="line">        proxy_pass https://www.ietf.org;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    location /config &#123;</span><br><span class="line">        alias /var/www/trojan-panel/public;</span><br><span class="line">        index index.php;</span><br><span class="line">        try_files \$uri \$uri/ @config;</span><br><span class="line"></span><br><span class="line">        location ~ \.php\$ &#123;</span><br><span class="line">            include snippets/fastcgi-php.conf;</span><br><span class="line">            fastcgi_param SCRIPT_FILENAME \$request_filename;</span><br><span class="line">            fastcgi_pass unix:/var/run/php/php7.2-fpm.sock;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        location ~ /\\.(?&quot;&apos;!&apos;&quot;well-known).* &#123;</span><br><span class="line">            deny all;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    location @config &#123;</span><br><span class="line">        rewrite /config/(.*)\$ /config/index.php?/\$1 last;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">server &#123;</span><br><span class="line">    listen 127.0.0.1:80;</span><br><span class="line"></span><br><span class="line">    server_name 10.10.10.10;</span><br><span class="line"></span><br><span class="line">    return 301 https://&lt;tdom.ml&gt;\$request_uri;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">server &#123;</span><br><span class="line">    listen 0.0.0.0:80;</span><br><span class="line">    listen [::]:80;</span><br><span class="line"></span><br><span class="line">    server_name _;</span><br><span class="line"></span><br><span class="line">    return 301 https://&lt;tdom.ml&gt;\$request_uri;</span><br><span class="line">&#125;</span><br><span class="line">&quot; &gt; /etc/nginx/sites-available/default&apos;</span><br></pre></td></tr></table></figure>
-<h2 id="重启nginx">重启Nginx</h2>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo systemctl restart nginx</span><br></pre></td></tr></table></figure>
-<h2 id="更新trojan配置文件">更新trojan配置文件</h2>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo vi /etc/trojan/config.json</span><br></pre></td></tr></table></figure>
+
+<h2 id="重启Nginx"><a href="#重启Nginx" class="headerlink" title="重启Nginx"></a>重启Nginx</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo systemctl restart nginx</span><br></pre></td></tr></table></figure>
+
+<h2 id="更新trojan配置文件"><a href="#更新trojan配置文件" class="headerlink" title="更新trojan配置文件"></a>更新trojan配置文件</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo vi /etc/trojan/config.json</span><br></pre></td></tr></table></figure>
+
 <p>将mysql中的enabled改为true，password填写刚才为数据库用户trojan设置的密码。</p>
-<h2 id="重启trojan">重启trojan</h2>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo systemctl restart trojan</span><br></pre></td></tr></table></figure>
-<h1 id="测试">测试</h1>
-<p>浏览器中访问：<a href="https://yourdomain.com/config" class="uri" target="_blank" rel="noopener">https://yourdomain.com/config</a>看看是否可以访问trojan-panel，如果可以访问trojan-panel的话，那么就可以注册账户了。第一个注册的用户是管理员，用户要使用需要管理员审核，即<strong><em>将用户的Quota设为-1</em></strong>。配置文件中的密码填写在panel注册的用户信息：&quot;Username:Password&quot;。</p>
+<h2 id="重启trojan"><a href="#重启trojan" class="headerlink" title="重启trojan"></a>重启trojan</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo systemctl restart trojan</span><br></pre></td></tr></table></figure>
+
+<h1 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h1><p>浏览器中访问：<a href="https://yourdomain.com/config" target="_blank" rel="noopener">https://yourdomain.com/config</a>看看是否可以访问trojan-panel，如果可以访问trojan-panel的话，那么就可以注册账户了。第一个注册的用户是管理员，用户要使用需要管理员审核，即<strong><em>将用户的Quota设为-1</em></strong>。配置文件中的密码填写在panel注册的用户信息：”Username:Password”。</p>
 
       
     </div>
@@ -755,7 +755,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#期望效果"><span class="nav-number">1.</span> <span class="nav-text">期望效果</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#前置条件"><span class="nav-number">2.</span> <span class="nav-text">前置条件</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#配置"><span class="nav-number">3.</span> <span class="nav-text">配置</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#更新系统"><span class="nav-number">3.1.</span> <span class="nav-text">更新系统</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装依赖"><span class="nav-number">3.2.</span> <span class="nav-text">安装依赖</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#配置数据库"><span class="nav-number">3.3.</span> <span class="nav-text">配置数据库</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装php软件包管理系统"><span class="nav-number">3.4.</span> <span class="nav-text">安装PHP软件包管理系统</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装nodejs和npm"><span class="nav-number">3.5.</span> <span class="nav-text">安装NodeJS和npm</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装trojan-panel"><span class="nav-number">3.6.</span> <span class="nav-text">安装trojan-panel</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#配置trojan-panel运行环境"><span class="nav-number">3.7.</span> <span class="nav-text">配置trojan-panel运行环境</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#赋予权限"><span class="nav-number">3.8.</span> <span class="nav-text">赋予权限</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#配置nginx"><span class="nav-number">3.9.</span> <span class="nav-text">配置Nginx</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#重启nginx"><span class="nav-number">3.10.</span> <span class="nav-text">重启Nginx</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#更新trojan配置文件"><span class="nav-number">3.11.</span> <span class="nav-text">更新trojan配置文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#重启trojan"><span class="nav-number">3.12.</span> <span class="nav-text">重启trojan</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#测试"><span class="nav-number">4.</span> <span class="nav-text">测试</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#期望效果"><span class="nav-number">1.</span> <span class="nav-text">期望效果</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#前置条件"><span class="nav-number">2.</span> <span class="nav-text">前置条件</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#配置"><span class="nav-number">3.</span> <span class="nav-text">配置</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#更新系统"><span class="nav-number">3.1.</span> <span class="nav-text">更新系统</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装依赖"><span class="nav-number">3.2.</span> <span class="nav-text">安装依赖</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#配置数据库"><span class="nav-number">3.3.</span> <span class="nav-text">配置数据库</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装PHP软件包管理系统"><span class="nav-number">3.4.</span> <span class="nav-text">安装PHP软件包管理系统</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装NodeJS和npm"><span class="nav-number">3.5.</span> <span class="nav-text">安装NodeJS和npm</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装trojan-panel"><span class="nav-number">3.6.</span> <span class="nav-text">安装trojan-panel</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#配置trojan-panel运行环境"><span class="nav-number">3.7.</span> <span class="nav-text">配置trojan-panel运行环境</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#赋予权限"><span class="nav-number">3.8.</span> <span class="nav-text">赋予权限</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#配置Nginx"><span class="nav-number">3.9.</span> <span class="nav-text">配置Nginx</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#重启Nginx"><span class="nav-number">3.10.</span> <span class="nav-text">重启Nginx</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#更新trojan配置文件"><span class="nav-number">3.11.</span> <span class="nav-text">更新trojan配置文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#重启trojan"><span class="nav-number">3.12.</span> <span class="nav-text">重启trojan</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#测试"><span class="nav-number">4.</span> <span class="nav-text">测试</span></a></li></ol></div>
             
 
           </div>
