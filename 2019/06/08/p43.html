@@ -101,7 +101,7 @@
 <meta property="og:site_name" content="trojan-tutor">
 <meta property="og:description" content="期望效果 panel与trojan共存。 前置条件  本文假设你已完全理解自建梯子教程 --trojan版本，否则请先按照自建梯子教程 --trojan版本配置好服务器； 不能使用root用户，但是要确保用户具有sudo权限，使用配置trojan的时候的同一个账户也是可以的。 系统要求：Ubuntu &amp;gt;= 16.04 or Debian &amp;gt;= 9  配置 更新系统">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-08-01T08:54:59.085Z">
+<meta property="og:updated_time" content="2019-08-02T03:44:18.851Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Trojan-Panel配置">
 <meta name="twitter:description" content="期望效果 panel与trojan共存。 前置条件  本文假设你已完全理解自建梯子教程 --trojan版本，否则请先按照自建梯子教程 --trojan版本配置好服务器； 不能使用root用户，但是要确保用户具有sudo权限，使用配置trojan的时候的同一个账户也是可以的。 系统要求：Ubuntu &amp;gt;= 16.04 or Debian &amp;gt;= 9  配置 更新系统">
@@ -396,7 +396,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-08-01 16:54:59" itemprop="dateModified" datetime="2019-08-01T16:54:59+08:00">2019-08-01</time>
+                <time title="修改时间：2019-08-02 11:44:18" itemprop="dateModified" datetime="2019-08-02T11:44:18+08:00">2019-08-02</time>
               </span>
             
           
@@ -477,7 +477,8 @@
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt install -y mariadb-server</span><br></pre></td></tr></table></figure>
 <h3 id="安装php">安装PHP</h3>
 <h4 id="ubuntu-16.04-需要从ppa源安装">Ubuntu 16.04 需要从ppa源安装</h4>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo apt install -y software-properties-common</span><br><span class="line">sudo add-apt-repository ppa:ondrej/php</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt install -y software-properties-common</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo add-apt-repository ppa:ondrej/php</span><br></pre></td></tr></table></figure>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt update</span><br></pre></td></tr></table></figure>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt install -y php7.2-fpm php7.2-mysql php7.2-cli php7.2-xml php7.2-json php7.2-mbstring php7.2-tokenizer php7.2-bcmath</span><br></pre></td></tr></table></figure>
 <h3 id="debian-9-需要从ppa源安装">Debian 9 需要从ppa源安装</h3>
