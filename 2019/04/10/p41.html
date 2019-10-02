@@ -129,7 +129,7 @@
 <meta property="og:image" content="https://trojan-tutor.github.io/2019/04/10/p41/proxy.jpg">
 <meta property="og:image" content="https://trojan-tutor.github.io/2019/04/10/p41/初始情景模式.jpg">
 <meta property="og:image" content="https://trojan-tutor.github.io/2019/04/10/p41/确定状态.jpg">
-<meta property="og:updated_time" content="2019-10-01T09:03:27.384Z">
+<meta property="og:updated_time" content="2019-10-02T17:03:57.920Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="自建梯子教程 --Trojan版本">
 <meta name="twitter:description" content="综述 本文简介 本文总结了自己在VPS搭建trojan-gfw代理过程中遇到的各种坑，以及最后的解决方案，以供大家参考。 本文的宗旨在于，将大量重复性的工作集中到配置过程中，以让使用过程尽量简单。所以本文的配置过程相较于网上的某些教程稍微复杂一点，但是如果严格按照本文配置过程配置的话，那么配置完成之后服务器端就可以几乎不用搭理他了，然后客户端几乎是拿到手就可以使用，特别适合有好几个人一起共享">
@@ -425,7 +425,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-10-01 17:03:27" itemprop="dateModified" datetime="2019-10-01T17:03:27+08:00">2019-10-01</time>
+                <time title="修改时间：2019-10-03 01:03:57" itemprop="dateModified" datetime="2019-10-03T01:03:57+08:00">2019-10-03</time>
               </span>
             
           
@@ -658,7 +658,7 @@
 <p>几点说明，目前客户端trojan不能使用全局代理，所以需要配合其他软件使用，比如proxifier等。推荐使用trojan+chrome插件SwitchyOmega实现只能chrome翻墙的目的。这样trojan只用监听一个端口，由chrome插件决定当前流量是否走代理。如果你有别的用途可以单独在某个软件内部使用SOCKS5协议指定代理，地址为trojan的地址：127.0.0.1:1080。</p>
 <h4 id="配置windows客户端">配置windows客户端</h4>
 <p>windows客户端下载地址<a href="https://github.com/trojan-gfw/trojan/releases" target="_blank" rel="noopener">trojan for Windows</a>，打开之后下载最新版本的win.zip压缩包。</p>
-<p>下载成功之后解压，修改目录中的<code>config.json</code>配置文件中的<code>local_port</code>、<code>remote_addr</code>和<code>password</code>即可。其中，remote_addr填写自己的域名，local_port开启本地端口，用来接收本地数据，建议修改为不常用端口，否则容易冲突，本文仅使用默认端口1080演示。trojan不需要安装就可以直接运行，拷贝trojan文件夹到电脑里面，双击即可运行。如果启动报错，那么说明你的系统里面没有C++运行环境，需要安装<a href="https://www.microsoft.com/en-us/download/details.aspx?id=48145" target="_blank" rel="noopener">vc_redist.x86.exe</a>，然后重新启动trojan，确认trojan没有报错即可。如果启动trojan会一闪而过，那么应该是你配置文件有错误，请仔细检查。可以使用控制台运行trojan，能看到具体是哪一行有错，具体方法：使用命令提示符在trojan目录运行<code>trojan</code>命令可以看到具体哪一行错误，如果出现<code>fatal: config.json(n): invalid code sequence</code>错误，那么是你的配置文件第<code>n</code>行有错误，请检查。</p>
+<p>下载成功之后解压，修改目录中的<code>config.json</code>配置文件中的<code>local_port</code>、<code>remote_addr</code>和<code>password</code>即可。其中，remote_addr填写自己的域名，local_port开启本地端口，用来接收本地数据，建议修改为不常用端口，否则容易冲突，本文仅使用默认端口1080演示。trojan不需要安装就可以直接运行，拷贝trojan文件夹到电脑里面，双击即可运行。如果启动报错，那么说明你的系统里面没有C++运行环境，需要安装<a href="https://support.microsoft.com/en-us/help/2977003/the-latest-supported-visual-c-downloads" target="_blank" rel="noopener">VC++运行环境</a>（1.12.3及以前版本安装x86环境，1.13.0及以后版本安装x64环境，或者两个版本都安装也行），然后重新启动trojan，确认trojan没有报错即可。如果启动trojan会一闪而过，那么应该是你配置文件有错误，请仔细检查。可以使用控制台运行trojan，能看到具体是哪一行有错，具体方法：使用命令提示符在trojan目录运行<code>trojan</code>命令可以看到具体哪一行错误，如果出现<code>fatal: config.json(n): invalid code sequence</code>错误，那么是你的配置文件第<code>n</code>行有错误，请检查。</p>
 <p><strong><em>如何配置图形界面：</em></strong>trojan的windows客户端目前还没有图形界面，如果对黑框有强迫症，可以使用<a href="https://github.com/rexdf/CommandTrayHost/releases" target="_blank" rel="noopener">CommandTrayHost</a>将黑框托盘化。这是本人目前采用的方案，相关文件可以在<a href="https://github.com/trojan-tutor/VPN/releases" target="_blank" rel="noopener">这里下载</a>，下载完成之后解压并将你的配置文件拷贝到trojan目录即可使用。</p>
 <h4 id="配置mac客户端">配置Mac客户端</h4>
 <p>MAC客户端下载地址<a href="https://github.com/trojan-gfw/trojan/releases" target="_blank" rel="noopener">trojan for MAC</a>，打开之后下载最新版的macos.zip，编辑配置文件同windows客户端，编辑好配置文件后双击运行<code>start.command</code>即可。如果出现<code>bind: Permission denied</code>错误，需要在终端使用<code>killall trojan</code>命令杀掉现有的trojan相关的进程。如果出现<code>fatal: config.json(n): invalid code sequence</code>错误，那么是你的配置文件第n行有错误，请检查。</p>
