@@ -128,7 +128,7 @@
 <meta property="og:image" content="https://trojan-tutor.github.io/2019/04/10/p41/proxy.jpg">
 <meta property="og:image" content="https://trojan-tutor.github.io/2019/04/10/p41/初始情景模式.jpg">
 <meta property="og:image" content="https://trojan-tutor.github.io/2019/04/10/p41/确定状态.jpg">
-<meta property="og:updated_time" content="2019-10-12T16:22:46.212Z">
+<meta property="og:updated_time" content="2019-10-13T03:07:17.271Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="自建梯子教程 --Trojan版本">
 <meta name="twitter:description" content="综述 本文简介 本文总结了自己在VPS搭建Trojan-GFW代理过程中遇到的各种坑，以及最后的解决方案，以供大家参考。 本文的宗旨在于，将大量重复性的工作集中到配置过程中，以让使用过程尽量简单。所以本文的配置过程相较于网上的某些教程稍微复杂一点，但是如果严格按照本文配置过程配置的话，那么配置完成之后服务器端就可以几乎不用搭理他了，然后客户端几乎是拿到手就可以使用，特别适合有好几个人一起共享">
@@ -424,7 +424,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-10-13 00:22:46" itemprop="dateModified" datetime="2019-10-13T00:22:46+08:00">2019-10-13</time>
+                <time title="修改时间：2019-10-13 11:07:17" itemprop="dateModified" datetime="2019-10-13T11:07:17+08:00">2019-10-13</time>
               </span>
             
           
@@ -596,15 +596,13 @@
 <p>Trojan启动、查看状态命令分别如下，第一条是启动Trojan，第二条是查看Trojan运行状态。启动之后再查看一下状态，Trojan显示active (running)即表示正常启动了。如果出现<code>fatal: config.json(n): invalid code sequence</code>错误，那么是你的配置文件第<code>n</code>行有错误，请检查。</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo systemctl restart trojan</span><br><span class="line">sudo systemctl status trojan</span><br></pre></td></tr></table></figure>
 <h5 id="更新证书">更新证书</h5>
-<p>当acme.sh重新安装证书之后，有两个方法通知Trojan重新加载证书。这一步目前没有找到自动化解决方案，需要每3个月执行一次。</p>
-<ol type="1">
-<li>重启Trojan。</li>
-</ol>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo systemctl restart trojan</span><br><span class="line">sudo systemctl status trojan</span><br></pre></td></tr></table></figure>
-<ol start="2" type="1">
-<li>给Trojan发送<code>SIGUSR1</code>消息，Trojan收到<code>SIGUSR1</code>消息后便会<a href="https://github.com/trojan-gfw/trojan/commit/53ca5f80fcd6239c28c8520886692e9186e3fcf6" target="_blank" rel="noopener">自动加载新的证书和密钥文件</a>，这样就不用重启Trojan了。</li>
-</ol>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo killall -s SIGUSR1 trojan</span><br><span class="line">sudo systemctl status trojan</span><br></pre></td></tr></table></figure>
+<p>当acme.sh重新安装证书之后，需要通知Trojan重新加载证书。最简单的方案是每三个月登录服务器重启Trojan，但是不够完美，毕竟重启的时候会导致服务中断。其实Trojan有实现<a href="https://github.com/trojan-gfw/trojan/commit/53ca5f80fcd6239c28c8520886692e9186e3fcf6" target="_blank" rel="noopener">reload certificate and private key</a>功能，只需要在证书更新后给Trojan发送<code>SIGUSR1</code>消息即可。Trojan收到<code>SIGUSR1</code>消息后便会自动加载新的证书和密钥文件，这样就不用重启Trojan了。手动给Trojan发送<code>SIGUSR1</code>消息的命令是<code>sudo -u trojan killall -s SIGUSR1 trojan</code>，但是这样也不够完美，也得每三个月登录服务器运行一次该命令。其实我们可以给用户<code>trojan</code>添加定时任务，使其每个月运行一次该命令即可。实现如下。</p>
+<p>首先，编辑用户<code>trojan</code>的crontab文件</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo -u trojan crontab -e</span><br></pre></td></tr></table></figure>
+<p>在文件末尾添加一行如下，该行表示每个月1号的时候运行命令<code>killall -s SIGUSR1 trojan</code>，由于是使用用户<code>trojan</code>运行的，故不需要在前面加<code>sudo -u trojan</code>。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">0 0 1 * * killall -s SIGUSR1 trojan</span><br></pre></td></tr></table></figure>
+<p>最后查看crontab是否生效。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo -u trojan crontab -l</span><br></pre></td></tr></table></figure>
 <h5 id="更新trojan">更新Trojan</h5>
 <p>如果Trojan版本有更新（可以去<a href="https://github.com/trojan-gfw/trojan/releases" target="_blank" rel="noopener">这里</a>查看是否有更新），那么使用本教程搭建的服务器端更新Trojan版本只需要三条命令即可，不过要注意的是，第一条命令会提示是否覆盖配置文件，如果没有必要请回答n，否则配置文件将会被覆盖（如果不小心覆盖了就得自己重新编辑了）。第二条命令重新赋予Trojan监听443端口的能力。第三条命令重启Trojan。</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo bash -c <span class="string">"<span class="variable">$(curl -fsSL https://raw.githubusercontent.com/trojan-gfw/trojan-quickstart/master/trojan-quickstart.sh)</span>"</span></span><br></pre></td></tr></table></figure>
