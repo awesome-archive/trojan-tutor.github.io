@@ -128,7 +128,7 @@
 <meta property="og:image" content="https://trojan-tutor.github.io/2019/04/10/p41/proxy.jpg">
 <meta property="og:image" content="https://trojan-tutor.github.io/2019/04/10/p41/初始情景模式.jpg">
 <meta property="og:image" content="https://trojan-tutor.github.io/2019/04/10/p41/确定状态.jpg">
-<meta property="og:updated_time" content="2019-10-13T03:07:17.271Z">
+<meta property="og:updated_time" content="2019-10-13T08:34:25.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="自建梯子教程 --Trojan版本">
 <meta name="twitter:description" content="综述 本文简介 本文总结了自己在VPS搭建Trojan-GFW代理过程中遇到的各种坑，以及最后的解决方案，以供大家参考。 本文的宗旨在于，将大量重复性的工作集中到配置过程中，以让使用过程尽量简单。所以本文的配置过程相较于网上的某些教程稍微复杂一点，但是如果严格按照本文配置过程配置的话，那么配置完成之后服务器端就可以几乎不用搭理他了，然后客户端几乎是拿到手就可以使用，特别适合有好几个人一起共享">
@@ -424,7 +424,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-10-13 11:07:17" itemprop="dateModified" datetime="2019-10-13T11:07:17+08:00">2019-10-13</time>
+                <time title="修改时间：2019-10-13 16:34:25" itemprop="dateModified" datetime="2019-10-13T16:34:25+08:00">2019-10-13</time>
               </span>
             
           
@@ -549,15 +549,15 @@
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt upgrade -y</span><br></pre></td></tr></table></figure>
 <h4 id="创建服务账户">创建服务账户</h4>
 <p>很多看教程的小伙伴问“为什么非要弄这么多用户，直接root不可以吗？”，这里简单回答一下。既然Trojan是占用443端口，使用https协议，所以必然是要安装证书的。本教程使用<a href="https://github.com/Neilpang/acme.sh" target="_blank" rel="noopener">acme.sh</a>为Trojan生成证书，并配置了acme.sh的自动更新，包括代码和证书的更新。一方面，既然有配置自动更新就有可能出各种问题，毕竟你对更新之后的代码和证书是否可用一无所知。另一方面，acme.sh和Trojan均为开源软件，不一定值得信赖。基于此，为了降低acme.sh和Trojan对系统的影响和其相互影响，故需要单独为acme.sh和Trojan建立没有<code>sudo</code>权限的用户。如果执意使用具有<code>sudo</code>权限的用户，或者头铁直接使用<code>root</code>，出了问题是要自己承担责任的。</p>
-<p>这里我们创建两个用户，分别为<code>trojan</code>和<code>acme</code>。其中用户<code>trojan</code>只需要运行<code>trojan</code>服务，无需登录，故设置为系统用户即可。而<code>acme</code>需要登录配置acme.sh，故需要家目录和密码，为了安全密码强度不能太低。因为<code>trojan</code>和<code>acme</code>都需要读写证书文件，所以将<code>acme</code>和<code>trojan</code>添加到同一个用户组<code>certusers</code>，待申请到证书后将证书所有权交给用户组<code>certusers</code>并允许组内用户访问即可。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">sudo groupadd certusers</span><br><span class="line">sudo useradd -r -G certusers trojan</span><br><span class="line">sudo useradd -m -G certusers -s /bin/bash acme</span><br><span class="line">sudo passwd acme</span><br></pre></td></tr></table></figure>
+<p>这里我们创建两个用户，分别为<code>trojan</code>和<code>acme</code>。其中用户<code>trojan</code>只需要运行<code>trojan</code>服务，无需登录，也无需家目录，故设置为系统用户即可。这里将用户<code>acme</code>也设置为系统用户，但是区别在于<code>acme</code>需要配置acme.sh，故需要家目录。注意到，我并未给用户<code>acme</code>设置密码，所以该用户也不能登录，只能通过其他已经登录的用户切换过去，这样尽可能的保证了系统的安全与任务的独立。因为<code>trojan</code>和<code>acme</code>都需要读写证书文件，所以将<code>acme</code>和<code>trojan</code>添加到同一个用户组<code>certusers</code>，待申请到证书后将证书所有权交给用户组<code>certusers</code>并允许组内用户访问即可。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo groupadd certusers</span><br><span class="line">sudo useradd -r -M -G certusers trojan</span><br><span class="line">sudo useradd -r -m -G certusers acme</span><br></pre></td></tr></table></figure>
 <h4 id="配置证书">配置证书</h4>
 <h5 id="安装acme.sh自动管理ca证书脚本">安装acme.sh自动管理CA证书脚本</h5>
 <p><strong><em>分别</em></strong>执行如下命令，注意看是否报错。第一条命令安装acme需要的依赖。第二条命令切换到用户<code>acme</code>。第三条命令安装acme.sh。第四条命令退出当前用户。第五条命令再次切换到用户<code>acme</code>。注意到这里两次切换用户的操作不能省略，因为安装完acme.sh之后要重新登录当前用户，否则无法识别出acme.sh命令。</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt install -y socat cron curl</span><br></pre></td></tr></table></figure>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">su -l acme</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo su -l -s /bin/bash acme</span><br></pre></td></tr></table></figure>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">curl  https://get.acme.sh | sh</span><br><span class="line"><span class="built_in">exit</span></span><br></pre></td></tr></table></figure>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">su -l acme</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo su -l -s /bin/bash acme</span><br></pre></td></tr></table></figure>
 <h5 id="添加cloudflare-global-ca-key">添加cloudflare Global CA Key</h5>
 <p><strong><em>不是使用cloudflare DNS的请查看<a href="#domain">域名申请与解析</a>部分自己做调整！</em></strong></p>
 <p>需要让acme.sh自动管理你的证书，所以需要添加cloudflare的API。登录cloudflare之后定位到：头像&gt;&gt;My Profile&gt;&gt;API Tokens。可以看到这里有两个API Keys。我们需要的是Global API Key。Origin CA Key是不可以使用的。点击View即可查看，注意查看之后自己保存下来，每天可查看次数是有限制的。</p>
