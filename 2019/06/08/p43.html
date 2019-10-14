@@ -105,7 +105,7 @@
 <meta property="og:image" content="https://trojan-tutor.github.io/2019/06/08/p43/screenshot2.png">
 <meta property="og:image" content="https://trojan-tutor.github.io/2019/06/08/p43/screenshot3.png">
 <meta property="og:image" content="https://trojan-tutor.github.io/2019/06/08/p43/screenshot4.png">
-<meta property="og:updated_time" content="2019-10-13T16:20:02.000Z">
+<meta property="og:updated_time" content="2019-10-14T16:53:27.802Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Trojan-Panel配置">
 <meta name="twitter:description" content="期望效果 Panel与Trojan共存并且隐藏Panel访问路径。 前置条件  本文假设你已完全理解自建梯子教程 --Trojan版本，否则请先按照自建梯子教程 --Trojan版本配置好服务器； 不能使用root用户，但是要确保用户具有sudo权限，使用配置Trojan的时候的同一个账户也是可以的。 系统要求：Ubuntu &amp;gt;= 16.04 or Debian &amp;gt;= 9">
@@ -401,7 +401,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-10-14 00:20:02" itemprop="dateModified" datetime="2019-10-14T00:20:02+08:00">2019-10-14</time>
+                <time title="修改时间：2019-10-15 00:53:27" itemprop="dateModified" datetime="2019-10-15T00:53:27+08:00">2019-10-15</time>
               </span>
             
           
@@ -513,9 +513,9 @@
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">curl -sL https://deb.nodesource.com/setup_10.x | sudo -E bash -</span><br><span class="line">sudo apt install -y nodejs</span><br></pre></td></tr></table></figure>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">node -v</span><br><span class="line">npm -v</span><br></pre></td></tr></table></figure>
 <h4 id="安装trojan-panel">安装Trojan-Panel</h4>
-<p>注意，下面的命令中<code>&lt;test&gt;</code>修改为你当前用户名和组名，不理解请参考<a href="/2019/04/10/p41.html">自建梯子教程 --Trojan版本</a>。如果使用<code>root</code>用户执行<code>npm install</code>是会报错的，如果确实需要使用<code>root</code>执行的话，那么在前面加<code>sudo</code>可以解决。</p>
+<p>注意，下面第二条命令将trojan-panel权限移交给你当前用户，要求这个用户是具有<code>sudo</code>权限的非<code>root</code>用户（新建这类账户请参考<a href="/2019/04/10/p41.html#createuser">自建梯子教程 --Trojan版本</a>）。如果使用<code>root</code>用户执行<code>npm install</code>是会报错的，如果确实需要使用<code>root</code>执行的话，那么在前面加<code>sudo</code>可以解决。</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo git <span class="built_in">clone</span> https://github.com/trojan-gfw/trojan-panel.git</span><br></pre></td></tr></table></figure>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo chown -R &lt;<span class="built_in">test</span>&gt;:&lt;<span class="built_in">test</span>&gt; trojan-panel</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo chown -R <span class="variable">$USER</span>:<span class="variable">$USER</span> trojan-panel</span><br></pre></td></tr></table></figure>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> trojan-panel</span><br><span class="line">composer install</span><br><span class="line">npm install</span><br></pre></td></tr></table></figure>
 <h4 id="配置trojan-panel运行环境">配置Trojan-Panel运行环境</h4>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cp .env.example .env</span><br><span class="line">php artisan key:generate</span><br><span class="line">sudo nano .env</span><br></pre></td></tr></table></figure>
