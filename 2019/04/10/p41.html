@@ -133,7 +133,7 @@
 <meta property="og:image" content="https://trojan-tutor.github.io/2019/04/10/p41/添加条件.jpg">
 <meta property="og:image" content="https://trojan-tutor.github.io/2019/04/10/p41/添加条件1.jpg">
 <meta property="og:image" content="https://trojan-tutor.github.io/2019/04/10/p41/添加条件2.jpg">
-<meta property="og:updated_time" content="2020-05-14T07:35:01.224Z">
+<meta property="og:updated_time" content="2020-05-14T09:36:24.333Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="自建梯子教程 --Trojan版本">
 <meta name="twitter:description" content="综述 本文简介 本文总结了自己在VPS搭建Trojan-GFW代理过程中遇到的各种坑，以及最后的解决方案，以供大家参考。 本文的宗旨在于，将大量重复性的工作集中到配置过程中，以让使用过程尽量简单。所以本文的配置过程相较于网上的某些教程稍微复杂一点，但是如果严格按照本文配置过程配置的话，那么配置完成之后服务器端就可以几乎不用搭理他了，然后客户端几乎是拿到手就可以使用，特别适合有好几个人一起共享">
@@ -429,7 +429,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2020-05-14 15:35:01" itemprop="dateModified" datetime="2020-05-14T15:35:01+08:00">2020-05-14</time>
+                <time title="修改时间：2020-05-14 17:36:24" itemprop="dateModified" datetime="2020-05-14T17:36:24+08:00">2020-05-14</time>
               </span>
             
           
@@ -621,7 +621,7 @@
 <h5 id="申请证书">申请证书</h5>
 <p>执行如下命令（<strong><em>注意域名<code>&lt;tdom.ml&gt;</code>改为你自己的域名</em></strong>），等待一会儿。 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">acme.sh --issue -d &lt;tdom.ml&gt; -w /var/www/acme-challenge</span><br></pre></td></tr></table></figure></p>
 <p>看到下图的提示表示证书申请成功。 <img src="p41/证书申请成功提示.jpg" alt="证书申请成功提示"></p>
-<p><strong><em>申请失败怎么办？</em></strong>证书申请失败的可能性一般有：1. 文件夹权限问题，请仔细检查每一步是否都正确；2. 证书申请次数超限，此时<strong><em>切忌反复尝试</em></strong>。证书每一个周申请次数是有限制的（20次），如果超限了就需要等一个周或者更换域名了（这个限制是争对每一个子域单独做的限制，所以万一超限了还可以用子域名继续部署）。解决方案是：在上述命令后加<code>--staging</code>参数继续测试。测试通过之后，删除上图所示四个证书文件并<strong><em>取消<code>--staging</code>参数</em></strong>再执行一次。<code>--staging</code>参数申请的证书只作为测试用，客户端是无法认证通过的（提示<code>SSL handshake failed: tlsv1 alert unknown ca</code>），所以使用<code>--staging</code>参数申请到了证书之后要去掉<code>--staging</code>参数重新申请一次。</p>
+<p><strong><em>申请失败怎么办？</em></strong>证书申请失败的可能性一般有：1. 文件夹权限问题，请仔细检查每一步是否都正确；2. 证书申请次数超限，此时<strong><em>切忌反复尝试</em></strong>。证书每一个周申请次数是有限制的（20次），如果超限了就需要等一个周或者更换域名了（这个限制是争对每一个子域单独做的限制，所以万一超限了还可以用子域名继续部署）。解决方案是：在上述命令后加<code>--staging</code>参数继续测试。测试通过之后，删除上图所示四个证书文件以及该域名对应文件夹并<strong><em>取消<code>--staging</code>参数</em></strong>再执行一次。<code>--staging</code>参数申请的证书只作为测试用，客户端是无法认证通过的（提示<code>SSL handshake failed: tlsv1 alert unknown ca</code>），所以使用<code>--staging</code>参数申请到了证书之后要去掉<code>--staging</code>参数重新申请一次。</p>
 <h5 id="安装证书">安装证书</h5>
 <p>执行如下命令（<strong><em>注意域名<code>&lt;tdom.ml&gt;</code>改为你自己的域名</em></strong>），第一条命令使用acme.sh将证书安装到<code>certfiles</code>目录，这样acme.sh更新证书的时候会自动将新的证书安装到这里。第二条命令是配置acme.sh自动更新和自动更新证书，这样配置完Trojan之后一般不用管服务器。</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">acme.sh --install-cert -d &lt;tdom.ml&gt; --key-file /etc/letsencrypt/live/private.key --fullchain-file /etc/letsencrypt/live/certificate.crt</span><br></pre></td></tr></table></figure>
