@@ -133,7 +133,7 @@
 <meta property="og:image" content="https://trojan-tutor.github.io/2019/04/10/p41/添加条件.jpg">
 <meta property="og:image" content="https://trojan-tutor.github.io/2019/04/10/p41/添加条件1.jpg">
 <meta property="og:image" content="https://trojan-tutor.github.io/2019/04/10/p41/添加条件2.jpg">
-<meta property="og:updated_time" content="2020-05-14T02:22:52.353Z">
+<meta property="og:updated_time" content="2020-05-14T03:16:42.971Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="自建梯子教程 --Trojan版本">
 <meta name="twitter:description" content="综述 本文简介 本文总结了自己在VPS搭建Trojan-GFW代理过程中遇到的各种坑，以及最后的解决方案，以供大家参考。 本文的宗旨在于，将大量重复性的工作集中到配置过程中，以让使用过程尽量简单。所以本文的配置过程相较于网上的某些教程稍微复杂一点，但是如果严格按照本文配置过程配置的话，那么配置完成之后服务器端就可以几乎不用搭理他了，然后客户端几乎是拿到手就可以使用，特别适合有好几个人一起共享">
@@ -429,7 +429,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2020-05-14 10:22:52" itemprop="dateModified" datetime="2020-05-14T10:22:52+08:00">2020-05-14</time>
+                <time title="修改时间：2020-05-14 11:16:42" itemprop="dateModified" datetime="2020-05-14T11:16:42+08:00">2020-05-14</time>
               </span>
             
           
@@ -701,13 +701,8 @@
 </ol>
 <h3 id="配置trojan客户端">配置trojan客户端</h3>
 <p>Trojan-Qt5是一个专为trojan开发的跨平台的GUI客户端，目前支持Windows、Linux、Mac。软件下载地址：<a href="https://github.com/TheWanderingCoel/Trojan-Qt5/releases/latest" target="_blank" rel="noopener">Trojan-Qt5</a>。此处以Windows为例，由于是跨平台软件，故除了安装方式不同以外（安装软件应该都会吧，哈哈），配置方面Linux和Mac的配置与Windows大同小异，不再赘述。</p>
-<p>拷贝Trojan-Qt5-Windows文件夹到电脑里面，并启动Trojan-Qt5.exe。点击菜单栏的：连接》添加》手动》手动添加TROJAN连接。</p>
-<figure>
-<img src="p41/手动添加连接.jpg" alt><figcaption>手动添加连接.jpg</figcaption>
-</figure>
-<figure>
-<img src="p41/手动添加连接1.jpg" alt><figcaption>手动添加连接1.jpg</figcaption>
-</figure>
+<p>拷贝Trojan-Qt5-Windows文件夹到电脑里面，并启动Trojan-Qt5.exe。点击菜单栏的：连接》添加》手动》。</p>
+<p><img src="p41/手动添加连接.jpg" alt="手动添加连接.jpg"> 然后手动添加TROJAN连接。 <img src="p41/手动添加连接1.jpg" alt="手动添加连接1.jpg"></p>
 <p>在弹出的窗口中按照如下的内容填写（其他选项若不懂请保持默认）：</p>
 <ul>
 <li>配置名称 : 服务器节点的名称，随便填写；</li>
@@ -715,13 +710,16 @@
 <li>密钥： 填入你配置trojan时设置的密码，若安装了<a href="/2019/06/08/p43.html">Trojan-Panel</a>，则填写用户名和密码，使用英文冒号分隔；</li>
 <li>自动化： 勾选后会在程序启动时自动连接该节点，即将当前节点作为默认节点，可按需修改。</li>
 </ul>
-<p>修改完参数之后，点击OK完成服务器节点的添加。另外托盘区有两个地方需要求改，如下图所示。另外还可以在设置》常规设置里面配置开机自启。</p>
+<p>修改完参数之后，点击OK完成服务器节点的添加。另外托盘区有两个地方需要求改。</p>
+<p>首先将代理模式改为PAC模式。</p>
 <figure>
 <img src="p41/PAC模式.jpg" alt><figcaption>PAC模式.jpg</figcaption>
 </figure>
+<p>然后，更新PAC为GFWlist。</p>
 <figure>
 <img src="p41/GFWlist.jpg" alt><figcaption>GFWlist.jpg</figcaption>
 </figure>
+<p>另外还可以在设置》常规设置里面配置开机自启。</p>
 <figure>
 <img src="p41/autostartup.jpg" alt><figcaption>autostartup.jpg</figcaption>
 </figure>
