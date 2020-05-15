@@ -1,4 +1,10 @@
 # trojan-tutor.github.io
 trojan 教程 自建梯子教程 trojan教程 trojan-gfw 科学上网 代理工具 翻墙 Ubuntu Debian 小白教程 https伪装
 
-[https://trojan-tutor.github.io](https://trojan-tutor.github.io)
+本文总结了自己在VPS搭建Trojan-GFW代理过程中遇到的各种坑，以及最后的解决方案，以供大家参考。
+
+本文的宗旨在于，将大量重复性的工作集中到配置过程中，以让使用过程尽量简单。所以本文的配置过程相较于网上的某些教程稍微复杂一点，但是如果严格按照本文配置过程配置的话，那么配置完成之后服务器端就可以几乎不用搭理他了，然后客户端几乎是拿到手就可以使用，特别适合有好几个人一起共享的情况。
+
+本文将按操作顺序介绍部署用于trojan代理服务的VPS服务器的详细过程，按照步骤操作一切正常的话一小时之内即可配置成功。如果配置过程中有什么疑问，欢迎在留言区交流！
+
+教程地址：[https://trojan-tutor.github.io](https://trojan-tutor.github.io)
