@@ -133,7 +133,7 @@
 <meta property="og:image" content="https://trojan-tutor.github.io/2019/04/10/p41/添加条件.jpg">
 <meta property="og:image" content="https://trojan-tutor.github.io/2019/04/10/p41/添加条件1.jpg">
 <meta property="og:image" content="https://trojan-tutor.github.io/2019/04/10/p41/添加条件2.jpg">
-<meta property="og:updated_time" content="2020-05-14T09:36:24.333Z">
+<meta property="og:updated_time" content="2020-05-20T07:21:29.313Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="自建梯子教程 --Trojan版本">
 <meta name="twitter:description" content="综述 本文简介 本文总结了自己在VPS搭建Trojan-GFW代理过程中遇到的各种坑，以及最后的解决方案，以供大家参考。 本文的宗旨在于，将大量重复性的工作集中到配置过程中，以让使用过程尽量简单。所以本文的配置过程相较于网上的某些教程稍微复杂一点，但是如果严格按照本文配置过程配置的话，那么配置完成之后服务器端就可以几乎不用搭理他了，然后客户端几乎是拿到手就可以使用，特别适合有好几个人一起共享">
@@ -429,7 +429,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2020-05-14 17:36:24" itemprop="dateModified" datetime="2020-05-14T17:36:24+08:00">2020-05-14</time>
+                <time title="修改时间：2020-05-20 15:21:29" itemprop="dateModified" datetime="2020-05-20T15:21:29+08:00">2020-05-20</time>
               </span>
             
           
@@ -526,7 +526,7 @@
 <p>freenom注册地址在这里<a href="https://www.freenom.com" target="_blank" rel="noopener">https://www.freenom.com</a>，支持简体中文，可以自行切换。在寻找一个免费域名的输入框中输入自己理想的域名点击检查可用性，如图所示。检查到可用的中意的域名之后，点击现在获取即可锁定该域名。 <img src="p41/检查域名可用性.jpg" alt="检查域名可用性"></p>
 <p>现在可以点击完成按钮跳转到DNS配置和申请年限界面。点击Use DNS&gt;&gt;Use Frenom DNS Service。两个IP address框都直接<strong><em>输入你购买的VPS服务器的IP地址</em></strong>。Period选择12 Months @ FREE，然后点击Continue，输入并验证你的邮箱和信息即可。<strong><em>注意上面的提示，不要挂VPN，很多人会卡在验证账户的地方，一般都是挂了VPN导致的。</em></strong> <img src="p41/使用期限设置.jpg" alt="使用期限设置"></p>
 <h4 id="付费域名推荐">付费域名推荐</h4>
-<p>在freenom申请的免费域名是可以无限免费续期的，除非被人花钱抢注，所以自己每隔几个月回来续期一下就可以啦（似乎现在已经不能免费续期了）。反正这个域名只是拿来翻墙用，被人抢注了马上换一个成本也不大。如果介意这个的话，建议自己买付费域名，国外域名服务商推荐<a href="https://namecheap.com" target="_blank" rel="noopener">namecheap</a>，<strong><em>不要买国内域名服务商的域名</em></strong>。</p>
+<p>在freenom申请的免费域名是可以无限免费续期的，除非被人花钱抢注，所以自己每隔几个月回来续期一下就可以啦（似乎现在已经不能免费续期了）。反正这个域名只是拿来翻墙用，被人抢注了马上换一个成本也不大。如果介意这个的话，建议自己买付费域名，国外域名服务商推荐<a href="https://namecheap.pxf.io/c/2313928/408285/5618" target="_blank" rel="noopener">namecheap</a>，<strong><em>不要买国内域名服务商的域名</em></strong>。</p>
 <h3 id="vps服务器部署">VPS服务器部署</h3>
 <p><strong><em>跳过了上面系统选择与购买部分的要注意啦，本教程目前<a href="#SystemRequire">测试通过</a>操作系统版本是Ubuntu 16.04 or Debian 9 or CentOS 7及以上，更低版本系统无法成功搭建，其他系统尚未测试！</em></strong></p>
 <p><strong><em>跳过了上面系统选择与购买部分的要注意啦，本教程目前<a href="#SystemRequire">测试通过</a>操作系统版本是Ubuntu 16.04 or Debian 9 or CentOS 7及以上，更低版本系统无法成功搭建，其他系统尚未测试！</em></strong></p>
@@ -646,7 +646,7 @@
 <p>执行如下命令，赋予Trojan监听1024以下端口的能力，使得Trojan可以监听到443端口。这是由于我们使用非<code>root</code>用户启动Trojan，但是Linux默认不允许非<code>root</code>用户启动的进程监听1024以下的端口，除非为每一个二进制文件显式声明。</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo <span class="built_in">setcap</span> CAP_NET_BIND_SERVICE=+eip /usr/<span class="built_in">local</span>/bin/trojan</span><br></pre></td></tr></table></figure>
 <h6 id="使用systemd启动trojan">使用systemd启动Trojan</h6>
-<p>Trojan启动、查看状态命令分别如下，第一条是启动Trojan，第二条是查看Trojan运行状态。启动之后再查看一下状态，Trojan显示active (running)即表示正常启动了。如果出现<code>fatal: config.json(n): invalid code sequence</code>错误，那么是你的配置文件第<code>n</code>行有错误，请检查。</p>
+<p>Trojan启动、查看状态命令分别如下，第一条是启动Trojan，第二条是查看Trojan运行状态。启动之后再查看一下状态，Trojan显示active (running)即表示正常启动了。如果出现<code>fatal: config.json(n): invalid code sequence</code>错误，那么是你的配置文件第<code>n</code>行有错误，请检查。如果启动失败，还可以用<code>journalctl -f -u trojan</code>查看<code>systemd</code>的日志。</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo systemctl restart trojan</span><br><span class="line">sudo systemctl status trojan</span><br></pre></td></tr></table></figure>
 <h5 id="更新证书">更新证书</h5>
 <p>当acme.sh重新安装证书之后，需要通知Trojan重新加载证书。最简单的方案是每三个月登录服务器重启Trojan，但是不够完美，毕竟重启的时候会导致服务中断。其实Trojan有实现<a href="https://github.com/trojan-gfw/trojan/commit/53ca5f80fcd6239c28c8520886692e9186e3fcf6" target="_blank" rel="noopener">reload certificate and private key</a>功能，只需要在证书更新后给Trojan发送<code>SIGUSR1</code>消息即可。Trojan收到<code>SIGUSR1</code>消息后便会自动加载新的证书和密钥文件，这样就不用重启Trojan了。手动给Trojan发送<code>SIGUSR1</code>消息的命令是<code>sudo -u trojan killall -s SIGUSR1 trojan</code>，但是这样也不够完美，也得每三个月登录服务器运行一次该命令。其实我们可以给用户<code>trojan</code>添加定时任务，使其每个月运行一次该命令即可。实现如下。</p>
@@ -950,6 +950,12 @@
       <div class="site-state-item site-state-tags">
         
         
+        
+          
+        
+          
+        
+          
         
           
         
