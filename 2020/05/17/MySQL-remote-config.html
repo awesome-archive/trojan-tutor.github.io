@@ -102,7 +102,7 @@
 <meta property="og:description" content="期望效果 Trojan服务器通过自签证书进行SSL加密链接访问Panel服务器中MySQL数据。由于Trojan服务器和Panel服务器都是自己配置的可信任服务器，故自签证书足以。 前置条件  按照自建梯子教程 --Trojan版本配置Trojan好服务器； 按照自建梯子教程 --Trojan版本和Trojan-Panel配置配置好Panel服务器； 不能使用root用户，但是要确保用">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://trojan-tutor.github.io/2020/05/17/MySQL-remote-config/链接xftp.jpg">
-<meta property="og:updated_time" content="2020-05-25T15:33:56.165Z">
+<meta property="og:updated_time" content="2020-06-11T08:03:50.205Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Trojan集群配置">
 <meta name="twitter:description" content="期望效果 Trojan服务器通过自签证书进行SSL加密链接访问Panel服务器中MySQL数据。由于Trojan服务器和Panel服务器都是自己配置的可信任服务器，故自签证书足以。 前置条件  按照自建梯子教程 --Trojan版本配置Trojan好服务器； 按照自建梯子教程 --Trojan版本和Trojan-Panel配置配置好Panel服务器； 不能使用root用户，但是要确保用">
@@ -398,7 +398,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2020-05-25 23:33:56" itemprop="dateModified" datetime="2020-05-25T23:33:56+08:00">2020-05-25</time>
+                <time title="修改时间：2020-06-11 16:03:50" itemprop="dateModified" datetime="2020-06-11T16:03:50+08:00">2020-06-11</time>
               </span>
             
           
@@ -491,13 +491,13 @@
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo mkdir -p -m 750 /etc/mysql/.ssh</span><br><span class="line">sudo chown -R <span class="variable">$USER</span>:certusers /etc/mysql/.ssh</span><br><span class="line"><span class="built_in">cd</span> /etc/mysql/.ssh</span><br></pre></td></tr></table></figure>
 <p>使用你自己熟悉的工具将<code>/etc/mysql/.ssh/ca.pem</code>从Panel服务器转移到Trojan服务器。</p>
 <p>这里以Xftp为例，Xftp和安装Xshell类似，自己安装。链接到Panel服务器后直接在Xshell菜单栏点击新建文件传输即可打开Xftp并自动连接，如图所示 <img src="MySQL-remote-config/链接xftp.jpg" alt="链接xftp"></p>
-<p>在Xftp右侧服务器地址栏中输入<code>/etc/mysql/.ssh</code>并回车，双击<code>ca.pem</code>即可将Panel服务器证书下载到本地。同理将证书从本地上传到Trojan服务器相同路径。这里要注意，若是登录的用户对<code>/etc/mysql/.ssh</code>没有写入权限会报错，可将文件转存到用户家目录修改权限为当前登录用户可读写即可。</p>
+<p>在Xftp右侧服务器地址栏中输入<code>/etc/mysql/.ssh</code>并回车，双击<code>ca.pem</code>，<code>client-cert.pem</code>,<code>client-key.pem</code>即可将Panel服务器证书下载到本地。同理将证书从本地上传到Trojan服务器相同路径。这里要注意，若是登录的用户对<code>/etc/mysql/.ssh</code>没有写入权限会报错，可将文件转存到用户家目录修改权限为当前登录用户可读写即可。</p>
 <p>更新MySQL证书权限 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo chown -R <span class="variable">$USER</span>:certusers /etc/mysql/.ssh</span><br><span class="line">sudo chmod -R 750 /etc/mysql/.ssh</span><br></pre></td></tr></table></figure></p>
 <p>修改MySQL配置文件测试证书可用 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo nano /etc/mysql/mariadb.conf.d/50-mysql-clients.cnf</span><br></pre></td></tr></table></figure></p>
-<p>在<code>[client]</code>中加入以下代码（若没有<code>[client]</code>则自己添加） <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssl-ca=/etc/mysql/.ssh/ca.pem</span><br></pre></td></tr></table></figure></p>
+<p>在<code>[client]</code>中加入以下代码（若没有<code>[client]</code>则自己添加） <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ssl-ca=/etc/mysql/.ssh/ca.pem</span><br><span class="line">ssl-cert=/etc/mysql/.ssh/server-cert.pem</span><br><span class="line">ssl-key=/etc/mysql/.ssh/server-key.pem</span><br></pre></td></tr></table></figure></p>
 <p>测试链接到Panel服务器，其中<code>&lt;Panel Server&gt;</code>改为Panel服务器的IP或域名 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql -u trojan -h &lt;Panel Server&gt; -p</span><br></pre></td></tr></table></figure></p>
 <p>检测是否使用SSL链接并退出MySQL <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">status</span><br><span class="line"><span class="built_in">exit</span></span><br></pre></td></tr></table></figure></p>
-<p>编辑Trojan配置文件，在<code>mysql</code>项中：1. <code>enable</code>改为<code>true</code>；2. <code>server_addr</code>填入Panel服务器域名；3. <code>password</code>填入配置数据库时为Trojan服务器设置的访问密码；4. <code>cafile</code>填入<code>/etc/mysql/.ssh/ca.pem</code>。重启Trojan，并检查状态。</p>
+<p>编辑Trojan配置文件，在<code>mysql</code>项中：1. <code>enable</code>改为<code>true</code>；2. <code>server_addr</code>填入Panel服务器域名；3. <code>password</code>填入配置数据库时为Trojan服务器设置的访问密码；4. <code>key</code>，<code>cert</code>，<code>ca</code>分别填入<code>/etc/mysql/.ssh/server-key.pem</code>，<code>/etc/mysql/.ssh/server-cert.pem</code>，<code>/etc/mysql/.ssh/ca.pem</code>。重启Trojan，并检查状态。</p>
 <p><strong><em>可选：</em></strong>修改Trojan服务器的Nginx配置文件，反代地址改为Panel服务器地址，这样Trojan服务器可以作为Panel服务器的镜像存在，改完记得重启nginx。</p>
 <h3 id="测试">测试</h3>
 <p>Trojan客户端填入Trojan服务器地址和Panel中用户名密码测试是否可以正常使用。</p>
