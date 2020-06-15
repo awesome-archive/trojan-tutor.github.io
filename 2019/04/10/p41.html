@@ -94,7 +94,7 @@
 </script>
 
   <meta name="description" content="综述 本文简介 本文总结了自己在VPS搭建Trojan-GFW代理过程中遇到的各种坑，以及最后的解决方案，以供大家参考。 本文的宗旨在于，将大量重复性的工作集中到配置过程中，以让使用过程尽量简单。所以本文的配置过程相较于网上的某些教程稍微复杂一点，但是如果严格按照本文配置过程配置的话，那么配置完成之后服务器端就可以几乎不用搭理他了，然后客户端几乎是拿到手就可以使用，特别适合有好几个人一起共享">
-<meta name="keywords" content="VPN,科学上网,代理工具,GFW,翻墙,vps,Ubuntu,Debian,vultr,服务器,Trojan,Trojan-GFW,Trojan-quickstart,https伪装,Nginx,bash,小白教程,搭建教程">
+<meta name="keywords" content="VPN,科学上网,代理工具,GFW,翻墙,vps,Ubuntu,服务器,Trojan,Trojan-GFW,Nginx,Debian,vultr,Trojan-quickstart,https伪装,bash,小白教程,搭建教程">
 <meta property="og:type" content="article">
 <meta property="og:title" content="自建梯子教程 --Trojan版本">
 <meta property="og:url" content="https://trojan-tutor.github.io/2019/04/10/p41.html">
@@ -133,7 +133,7 @@
 <meta property="og:image" content="https://trojan-tutor.github.io/2019/04/10/p41/添加条件.jpg">
 <meta property="og:image" content="https://trojan-tutor.github.io/2019/04/10/p41/添加条件1.jpg">
 <meta property="og:image" content="https://trojan-tutor.github.io/2019/04/10/p41/添加条件2.jpg">
-<meta property="og:updated_time" content="2020-05-25T15:14:47.344Z">
+<meta property="og:updated_time" content="2020-06-15T01:33:55.059Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="自建梯子教程 --Trojan版本">
 <meta name="twitter:description" content="综述 本文简介 本文总结了自己在VPS搭建Trojan-GFW代理过程中遇到的各种坑，以及最后的解决方案，以供大家参考。 本文的宗旨在于，将大量重复性的工作集中到配置过程中，以让使用过程尽量简单。所以本文的配置过程相较于网上的某些教程稍微复杂一点，但是如果严格按照本文配置过程配置的话，那么配置完成之后服务器端就可以几乎不用搭理他了，然后客户端几乎是拿到手就可以使用，特别适合有好几个人一起共享">
@@ -429,7 +429,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2020-05-25 23:14:47" itemprop="dateModified" datetime="2020-05-25T23:14:47+08:00">2020-05-25</time>
+                <time title="修改时间：2020-06-15 09:33:55" itemprop="dateModified" datetime="2020-06-15T09:33:55+08:00">2020-06-15</time>
               </span>
             
           
@@ -609,9 +609,12 @@
 <p>第一条命令新建一个文件夹<code>/etc/letsencrypt/live</code>用于存放证书。第二条命令将证书文件夹所有者改为<code>acme</code>，使得用户<code>acme</code>有权限写入证书。</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo mkdir -p /etc/letsencrypt/live</span><br><span class="line">sudo chown -R acme:acme /etc/letsencrypt/live</span><br></pre></td></tr></table></figure>
 <h5 id="创建webroot并修改所有者">创建webroot并修改所有者</h5>
-<p>本文使用acme.sh的http方式申请证书，http方式需要在网站根目录下放置一个文件来验证域名所有权，故需要acme.sh和nginx均对webroot目录有权限，故将www-data用户（运行Nginx的worker进程）加入certusers组，下文再将webroot目录附加给certusers组即可。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo usermod -G certusers www-data</span><br></pre></td></tr></table></figure>
-<p>第一条命令新建一个文件夹<code>/var/www/acme-challenge</code>用于给acme.sh存放域名验证文件。第二条命令将证书文件夹所有者改为<code>acme</code>，使得用户<code>acme</code>有权限写入文件，同时当验证的时候Nginx可以读取该文件。</p>
+<p>本文使用acme.sh的http方式申请证书，http方式需要在网站根目录下放置一个文件来验证域名所有权，故需要acme.sh和nginx均对webroot目录有权限，故将运行Nginx的worker进程加入certusers组，下文再将webroot目录附加给certusers组即可。</p>
+<p>在不同的Linux发新版本中，nginx可能使用不同的用户运行<code>worker process</code>，可能为<code>www-data</code>，<code>nginx</code>，<code>nobody</code>中的一个，故需要自己运行下述命令查找<code>nginx: worker process</code>所属用户： <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ps -eo user,command|grep nginx</span><br></pre></td></tr></table></figure></p>
+<p>上述命令输出第二行第一列即为<code>nginx: worker process</code>所属用户，然后根据实际情况，运行下面三个命令之一： <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo usermod -G certusers www-data</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo usermod -G certusers nginx</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo usermod -G certusers nobody</span><br></pre></td></tr></table></figure>
+<p>运行下面两条命令，第一条命令新建一个文件夹<code>/var/www/acme-challenge</code>用于给acme.sh存放域名验证文件。第二条命令将证书文件夹所有者改为<code>acme</code>，使得用户<code>acme</code>有权限写入文件，同时当验证的时候Nginx可以读取该文件。</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo mkdir -p  /var/www/acme-challenge</span><br><span class="line">sudo chown -R acme:certusers /var/www/acme-challenge</span><br></pre></td></tr></table></figure>
 <h5 id="安装acme.sh自动管理ca证书脚本">安装acme.sh自动管理CA证书脚本</h5>
 <p><strong><em>分别</em></strong>执行如下命令，注意看是否报错。第一条命令切换到用户<code>acme</code>。第二条命令安装acme.sh。第三条命令退出当前用户。第四条命令再次切换到用户<code>acme</code>。注意到这里两次切换用户的操作不能省略，因为安装完acme.sh之后要重新登录当前用户，否则无法识别出acme.sh命令。</p>
@@ -812,21 +815,21 @@
           
             <a href="/tags/Ubuntu/" rel="tag"># Ubuntu</a>
           
-            <a href="/tags/Debian/" rel="tag"># Debian</a>
-          
-            <a href="/tags/vultr/" rel="tag"># vultr</a>
-          
             <a href="/tags/服务器/" rel="tag"># 服务器</a>
           
             <a href="/tags/Trojan/" rel="tag"># Trojan</a>
           
             <a href="/tags/Trojan-GFW/" rel="tag"># Trojan-GFW</a>
           
+            <a href="/tags/Nginx/" rel="tag"># Nginx</a>
+          
+            <a href="/tags/Debian/" rel="tag"># Debian</a>
+          
+            <a href="/tags/vultr/" rel="tag"># vultr</a>
+          
             <a href="/tags/Trojan-quickstart/" rel="tag"># Trojan-quickstart</a>
           
             <a href="/tags/https伪装/" rel="tag"># https伪装</a>
-          
-            <a href="/tags/Nginx/" rel="tag"># Nginx</a>
           
             <a href="/tags/bash/" rel="tag"># bash</a>
           
@@ -950,8 +953,6 @@
       <div class="site-state-item site-state-tags">
         
         
-        
-          
         
           
         
