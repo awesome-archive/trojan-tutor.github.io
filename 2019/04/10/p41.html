@@ -133,7 +133,7 @@
 <meta property="og:image" content="https://trojan-tutor.github.io/2019/04/10/p41/添加条件.jpg">
 <meta property="og:image" content="https://trojan-tutor.github.io/2019/04/10/p41/添加条件1.jpg">
 <meta property="og:image" content="https://trojan-tutor.github.io/2019/04/10/p41/添加条件2.jpg">
-<meta property="og:updated_time" content="2020-08-29T13:41:32.102Z">
+<meta property="og:updated_time" content="2020-09-22T13:12:00.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="自建梯子教程 --Trojan版本">
 <meta name="twitter:description" content="综述 本文简介 本文总结了自己在VPS搭建Trojan-GFW代理过程中遇到的各种坑，以及最后的解决方案，以供大家参考。 本文的宗旨在于，将大量重复性的工作集中到配置过程中，以让使用过程尽量简单。所以本文的配置过程相较于网上的某些教程稍微复杂一点，但是如果严格按照本文配置过程配置的话，那么配置完成之后服务器端就可以几乎不用搭理他了，然后客户端几乎是拿到手就可以使用，特别适合有好几个人一起共享">
@@ -429,7 +429,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2020-08-29 21:41:32" itemprop="dateModified" datetime="2020-08-29T21:41:32+08:00">2020-08-29</time>
+                <time title="修改时间：2020-09-22 21:12:00" itemprop="dateModified" datetime="2020-09-22T21:12:00+08:00">2020-09-22</time>
               </span>
             
           
@@ -650,7 +650,7 @@
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo <span class="built_in">setcap</span> CAP_NET_BIND_SERVICE=+eip /usr/<span class="built_in">local</span>/bin/trojan</span><br></pre></td></tr></table></figure>
 <h6 id="使用systemd启动trojan">使用systemd启动Trojan</h6>
 <p>Trojan启动、查看状态命令分别如下，第一条是启动Trojan，第二条是查看Trojan运行状态。启动之后再查看一下状态，Trojan显示active (running)即表示正常启动了。如果出现<code>fatal: config.json(n): invalid code sequence</code>错误，那么是你的配置文件第<code>n</code>行有错误，请检查。如果启动失败，还可以用<code>journalctl -f -u trojan</code>查看<code>systemd</code>的日志。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo systemctl restart trojan</span><br><span class="line">sudo systemctl status trojan</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo systemctl <span class="built_in">enable</span> trojan</span><br><span class="line">sudo systemctl restart trojan</span><br><span class="line">sudo systemctl status trojan</span><br></pre></td></tr></table></figure>
 <h5 id="更新证书">更新证书</h5>
 <p>当acme.sh重新安装证书之后，需要通知Trojan重新加载证书。最简单的方案是每三个月登录服务器重启Trojan，但是不够完美，毕竟重启的时候会导致服务中断。其实Trojan有实现<a href="https://github.com/trojan-gfw/trojan/commit/53ca5f80fcd6239c28c8520886692e9186e3fcf6" target="_blank" rel="noopener">reload certificate and private key</a>功能，只需要在证书更新后给Trojan发送<code>SIGUSR1</code>消息即可。Trojan收到<code>SIGUSR1</code>消息后便会自动加载新的证书和密钥文件，这样就不用重启Trojan了。手动给Trojan发送<code>SIGUSR1</code>消息的命令是<code>sudo -u trojan killall -s SIGUSR1 trojan</code>，但是这样也不够完美，也得每三个月登录服务器运行一次该命令。其实我们可以给用户<code>trojan</code>添加定时任务，使其每个月运行一次该命令即可。实现如下。</p>
 <p>首先，编辑用户<code>trojan</code>的crontab文件</p>
@@ -753,7 +753,7 @@
 <p>这一步只有安装Trojan原生客户端的需要运行且只需要这一次运行，配置完成之后可正常使用，这是由于Trojan原生客户端不支持GFWlist或全局代理功能导致的。</p>
 <h5 id="windows">Windows</h5>
 <p>在命令提示符（搜索框输入cmd）输入下面的命令启动Chrome，注意端口号如果你有修改也要对应的修改。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">start C:\<span class="string">"Program Files (x86)"</span>\Google\Chrome\Application\chrome.exe --proxy-server=<span class="string">"socks5://127.0.0.1:9999"</span> --host-resolver-rules=<span class="string">"MAP * ~NOTFOUND, EXCLUDE 127.0.0.1"</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">start C:\<span class="string">"Program Files"</span>\Google\Chrome\Application\chrome.exe --proxy-server=<span class="string">"socks5://127.0.0.1:9999"</span> --host-resolver-rules=<span class="string">"MAP * ~NOTFOUND, EXCLUDE 127.0.0.1"</span></span><br></pre></td></tr></table></figure>
 <p><strong><em>如果上述命令无法启动Chrome，是因为新版本的Chrome更改了安装路径导致的，你需要更新你的Chrome版本啦。</em></strong></p>
 <h5 id="mac">Mac</h5>
 <p>在终端输入下面的命令启动Chrome，注意端口号如果你有修改也要对应的修改。</p>
