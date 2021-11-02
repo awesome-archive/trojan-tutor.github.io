@@ -93,20 +93,20 @@
   };
 </script>
 
-  <meta name="description" content="期望效果Trojan服务器通过自签证书进行SSL加密链接访问Panel服务器中MySQL数据。由于Trojan服务器和Panel服务器都是自己配置的可信任服务器，故自签证书足以。 前置条件 按照自建梯子教程 –Trojan版本配置Trojan好服务器； 按照自建梯子教程 –Trojan版本和Trojan-Panel配置配置好Panel服务器； 不能使用root用户，但是要确保用户具有sudo权限，">
-<meta name="keywords" content="MySQL,remote,Trojan,Panel">
+  <meta name="description" content="期望效果 Trojan服务器通过自签证书进行SSL加密链接访问Panel服务器中MySQL数据。由于Trojan服务器和Panel服务器都是自己配置的可信任服务器，故自签证书足以。 前置条件  按照自建梯子教程 --Trojan版本配置Trojan好服务器； 按照自建梯子教程 --Trojan版本和Trojan-Panel配置配置好Panel服务器； 不能使用root用户，但是要确保用">
+<meta name="keywords" content="Trojan,MySQL,remote,Panel">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Trojan集群配置">
 <meta property="og:url" content="https://trojan-tutor.github.io/2020/05/17/MySQL-remote-config.html">
 <meta property="og:site_name" content="trojan-tutor">
-<meta property="og:description" content="期望效果Trojan服务器通过自签证书进行SSL加密链接访问Panel服务器中MySQL数据。由于Trojan服务器和Panel服务器都是自己配置的可信任服务器，故自签证书足以。 前置条件 按照自建梯子教程 –Trojan版本配置Trojan好服务器； 按照自建梯子教程 –Trojan版本和Trojan-Panel配置配置好Panel服务器； 不能使用root用户，但是要确保用户具有sudo权限，">
+<meta property="og:description" content="期望效果 Trojan服务器通过自签证书进行SSL加密链接访问Panel服务器中MySQL数据。由于Trojan服务器和Panel服务器都是自己配置的可信任服务器，故自签证书足以。 前置条件  按照自建梯子教程 --Trojan版本配置Trojan好服务器； 按照自建梯子教程 --Trojan版本和Trojan-Panel配置配置好Panel服务器； 不能使用root用户，但是要确保用">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https://trojan-tutor.github.io/2020/05/17/MySQL-remote-config/%E9%93%BE%E6%8E%A5xftp.jpg">
-<meta property="og:updated_time" content="2021-03-11T14:51:14.000Z">
+<meta property="og:image" content="https://trojan-tutor.github.io/2020/05/17/MySQL-remote-config/链接xftp.jpg">
+<meta property="og:updated_time" content="2021-03-11T14:51:14.373Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Trojan集群配置">
-<meta name="twitter:description" content="期望效果Trojan服务器通过自签证书进行SSL加密链接访问Panel服务器中MySQL数据。由于Trojan服务器和Panel服务器都是自己配置的可信任服务器，故自签证书足以。 前置条件 按照自建梯子教程 –Trojan版本配置Trojan好服务器； 按照自建梯子教程 –Trojan版本和Trojan-Panel配置配置好Panel服务器； 不能使用root用户，但是要确保用户具有sudo权限，">
-<meta name="twitter:image" content="https://trojan-tutor.github.io/2020/05/17/MySQL-remote-config/%E9%93%BE%E6%8E%A5xftp.jpg">
+<meta name="twitter:description" content="期望效果 Trojan服务器通过自签证书进行SSL加密链接访问Panel服务器中MySQL数据。由于Trojan服务器和Panel服务器都是自己配置的可信任服务器，故自签证书足以。 前置条件  按照自建梯子教程 --Trojan版本配置Trojan好服务器； 按照自建梯子教程 --Trojan版本和Trojan-Panel配置配置好Panel服务器； 不能使用root用户，但是要确保用">
+<meta name="twitter:image" content="https://trojan-tutor.github.io/2020/05/17/MySQL-remote-config/链接xftp.jpg">
 
 
 
@@ -460,74 +460,49 @@
       
 
       
-        <h3 id="期望效果"><a href="#期望效果" class="headerlink" title="期望效果"></a>期望效果</h3><p>Trojan服务器通过自签证书进行SSL加密链接访问Panel服务器中MySQL数据。由于Trojan服务器和Panel服务器都是自己配置的可信任服务器，故自签证书足以。</p>
-<h3 id="前置条件"><a href="#前置条件" class="headerlink" title="前置条件"></a>前置条件</h3><ol>
-<li>按照<a href="/2019/04/10/p41.html">自建梯子教程 –Trojan版本</a>配置Trojan好服务器；</li>
-<li>按照<a href="/2019/04/10/p41.html">自建梯子教程 –Trojan版本</a>和<a href="/2019/06/08/p43.html">Trojan-Panel配置</a>配置好Panel服务器；</li>
+        <h3 id="期望效果">期望效果</h3>
+<p>Trojan服务器通过自签证书进行SSL加密链接访问Panel服务器中MySQL数据。由于Trojan服务器和Panel服务器都是自己配置的可信任服务器，故自签证书足以。</p>
+<h3 id="前置条件">前置条件</h3>
+<ol type="1">
+<li>按照<a href="/2019/04/10/p41.html">自建梯子教程 --Trojan版本</a>配置Trojan好服务器；</li>
+<li>按照<a href="/2019/04/10/p41.html">自建梯子教程 --Trojan版本</a>和<a href="/2019/06/08/p43.html">Trojan-Panel配置</a>配置好Panel服务器；</li>
 <li><strong><em>不能</em></strong>使用<code>root</code>用户，但是要确保用户具有sudo权限，使用配置Trojan的时候的同一个账户也是可以的<a href="/2019/04/10/p41.html#createuser">参考</a>；</li>
 <li>配置防火墙允许3306端口；</li>
 <li>系统要求：<strong><em><a href="https://ubuntu.com" target="_blank" rel="noopener">Ubuntu</a> &gt;= 16.04</em></strong> or <strong><em><a href="https://www.debian.org" target="_blank" rel="noopener">Debian</a> &gt;= 9</em></strong>。</li>
 </ol>
-<h3 id="Panel服务器配置"><a href="#Panel服务器配置" class="headerlink" title="Panel服务器配置"></a>Panel服务器配置</h3><p><strong><em>登录Panel服务器</em></strong></p>
+<h3 id="panel服务器配置">Panel服务器配置</h3>
+<p><strong><em>登录Panel服务器</em></strong></p>
 <p>创建MySQL证书文件夹</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo mkdir -m 750 /etc/mysql/.ssh</span><br><span class="line">sudo chown -R <span class="variable">$USER</span>:mysql /etc/mysql/.ssh</span><br><span class="line"><span class="built_in">cd</span> /etc/mysql/.ssh</span><br></pre></td></tr></table></figure>
-
 <p>创建MySQL证书，包括Panel服务器证书和Trojan服务器证书</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">openssl genrsa 2048 &gt; ca-key.pem</span><br><span class="line">openssl req -sha1 -new -x509 -nodes -days 3650 -key ca-key.pem &gt; ca-cert.pem</span><br><span class="line">openssl req -sha1 -newkey rsa:2048 -days 730 -nodes -keyout server-key.pem &gt; server-req.pem</span><br><span class="line">openssl rsa -<span class="keyword">in</span> server-key.pem -out server-key.pem</span><br><span class="line">openssl x509 -sha1 -req -<span class="keyword">in</span> server-req.pem -days 730  -CA ca-cert.pem -CAkey ca-key.pem -set_serial 01 &gt; server-cert.pem</span><br><span class="line">openssl req -sha1 -newkey rsa:2048 -days 730 -nodes -keyout client-key.pem &gt; client-req.pem</span><br><span class="line">openssl rsa -<span class="keyword">in</span> client-key.pem -out client-key.pem</span><br><span class="line">openssl x509 -sha1 -req -<span class="keyword">in</span> client-req.pem -days 730 -CA ca-cert.pem -CAkey ca-key.pem -set_serial 01 &gt; client-cert.pem</span><br></pre></td></tr></table></figure>
-
-<p>创建CA证书</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cat server-cert.pem client-cert.pem &gt; ca.pem</span><br></pre></td></tr></table></figure>
-
-<p>更新MySQL证书权限</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo chown -R <span class="variable">$USER</span>:mysql /etc/mysql/.ssh</span><br><span class="line">sudo chmod -R 750 /etc/mysql/.ssh</span><br></pre></td></tr></table></figure>
-
-<p>修改MySQL配置文件</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo nano /etc/mysql/mariadb.conf.d/50-server.cnf</span><br></pre></td></tr></table></figure>
-
-<p>修改[mysqld]块中<code>bind-address</code>为<code>*</code>，并且在<code>bind-address = *</code>后添加如下几行</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ssl-ca=/etc/mysql/.ssh/ca-cert.pem</span><br><span class="line">ssl-cert=/etc/mysql/.ssh/server-cert.pem</span><br><span class="line">ssl-key=/etc/mysql/.ssh/server-key.pem</span><br></pre></td></tr></table></figure>
-
-<p>重启MySQL并查看状态</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo systemctl restart mysql</span><br><span class="line">sudo systemctl status mysql</span><br></pre></td></tr></table></figure>
-
-<p>登录MySQL</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo mysql -u root -p</span><br></pre></td></tr></table></figure>
-
-<p>配置远程访问权限，其中<code>&lt;Trojan Server&gt;</code>改为你Trojan服务器的IP，<code>&lt;password&gt;</code>改为Trojan服务器访问Panel服务器的密码</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">GRANT ALL PRIVILEGES ON trojan.* to trojan@<span class="string">'&lt;Trojan Server&gt;'</span> IDENTIFIED BY <span class="string">'&lt;password&gt;'</span> REQUIRE SSL;</span><br></pre></td></tr></table></figure>
-
-<p>重新加载privileges并检查配置是否成功，随后退出mysql</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">FLUSH PRIVILEGES;</span><br><span class="line">SHOW DATABASES;</span><br><span class="line">SELECT User,Host FROM mysql.user;</span><br><span class="line">quit</span><br></pre></td></tr></table></figure>
-
-<h3 id="Trojan服务器配置"><a href="#Trojan服务器配置" class="headerlink" title="Trojan服务器配置"></a>Trojan服务器配置</h3><p><strong><em>登录Trojan服务器</em></strong></p>
-<p>安装mysql-client作为测试</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt install mariadb-client -y</span><br></pre></td></tr></table></figure>
-
+<p>创建CA证书 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cat server-cert.pem client-cert.pem &gt; ca.pem</span><br></pre></td></tr></table></figure></p>
+<p>更新MySQL证书权限 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo chown -R <span class="variable">$USER</span>:mysql /etc/mysql/.ssh</span><br><span class="line">sudo chmod -R 750 /etc/mysql/.ssh</span><br></pre></td></tr></table></figure></p>
+<p>修改MySQL配置文件 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo nano /etc/mysql/mariadb.conf.d/50-server.cnf</span><br></pre></td></tr></table></figure></p>
+<p>修改[mysqld]块中<code>bind-address</code>为<code>*</code>，并且在<code>bind-address = *</code>后添加如下几行 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ssl-ca=/etc/mysql/.ssh/ca-cert.pem</span><br><span class="line">ssl-cert=/etc/mysql/.ssh/server-cert.pem</span><br><span class="line">ssl-key=/etc/mysql/.ssh/server-key.pem</span><br></pre></td></tr></table></figure></p>
+<p>重启MySQL并查看状态 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo systemctl restart mysql</span><br><span class="line">sudo systemctl status mysql</span><br></pre></td></tr></table></figure></p>
+<p>登录MySQL <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo mysql -u root -p</span><br></pre></td></tr></table></figure></p>
+<p>配置远程访问权限，其中<code>&lt;Trojan Server&gt;</code>改为你Trojan服务器的IP，<code>&lt;password&gt;</code>改为Trojan服务器访问Panel服务器的密码 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">GRANT ALL PRIVILEGES ON trojan.* to trojan@<span class="string">'&lt;Trojan Server&gt;'</span> IDENTIFIED BY <span class="string">'&lt;password&gt;'</span> REQUIRE SSL;</span><br></pre></td></tr></table></figure></p>
+<p>重新加载privileges并检查配置是否成功，随后退出mysql <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">FLUSH PRIVILEGES;</span><br><span class="line">SHOW DATABASES;</span><br><span class="line">SELECT User,Host FROM mysql.user;</span><br><span class="line">quit</span><br></pre></td></tr></table></figure></p>
+<h3 id="trojan服务器配置">Trojan服务器配置</h3>
+<p><strong><em>登录Trojan服务器</em></strong></p>
+<p>安装mysql-client作为测试 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt install mariadb-client -y</span><br></pre></td></tr></table></figure></p>
 <p>创建MySQL证书文件夹</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo mkdir -p -m 750 /etc/mysql/.ssh</span><br><span class="line">sudo chown -R <span class="variable">$USER</span>:certusers /etc/mysql/.ssh</span><br><span class="line"><span class="built_in">cd</span> /etc/mysql/.ssh</span><br></pre></td></tr></table></figure>
-
 <p>使用你自己熟悉的工具将<code>/etc/mysql/.ssh/ca.pem</code>从Panel服务器转移到Trojan服务器。</p>
-<p>这里以Xftp为例，Xftp和安装Xshell类似，自己安装。链接到Panel服务器后直接在Xshell菜单栏点击新建文件传输即可打开Xftp并自动连接，如图所示<br><img src="MySQL-remote-config/%E9%93%BE%E6%8E%A5xftp.jpg" alt="链接xftp"></p>
+<p>这里以Xftp为例，Xftp和安装Xshell类似，自己安装。链接到Panel服务器后直接在Xshell菜单栏点击新建文件传输即可打开Xftp并自动连接，如图所示 <img src="MySQL-remote-config/链接xftp.jpg" alt="链接xftp"></p>
 <p>在Xftp右侧服务器地址栏中输入<code>/etc/mysql/.ssh</code>并回车，双击<code>ca.pem</code>，<code>client-cert.pem</code>,<code>client-key.pem</code>即可将Panel服务器证书下载到本地。同理将证书从本地上传到Trojan服务器相同路径。这里要注意，若是登录的用户对<code>/etc/mysql/.ssh</code>没有写入权限会报错，可将文件转存到用户家目录修改权限为当前登录用户可读写即可。</p>
-<p>更新MySQL证书权限</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo chown -R <span class="variable">$USER</span>:certusers /etc/mysql/.ssh</span><br><span class="line">sudo chmod -R 750 /etc/mysql/.ssh</span><br></pre></td></tr></table></figure>
-
-<p>修改MySQL配置文件测试证书可用</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo nano /etc/mysql/mariadb.conf.d/50-mysql-clients.cnf</span><br></pre></td></tr></table></figure>
-
-<p>在<code>[client]</code>中加入以下代码（若没有<code>[client]</code>则自己添加）</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ssl-ca=/etc/mysql/.ssh/ca.pem</span><br><span class="line">ssl-cert=/etc/mysql/.ssh/client-cert.pem</span><br><span class="line">ssl-key=/etc/mysql/.ssh/client-key.pem</span><br></pre></td></tr></table></figure>
-
-<p>测试链接到Panel服务器，其中<code>&lt;Panel Server&gt;</code>改为Panel服务器的IP或域名</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql -u trojan -h &lt;Panel Server&gt; -p</span><br></pre></td></tr></table></figure>
-
-<p>检测是否使用SSL链接并退出MySQL</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">status</span><br><span class="line"><span class="built_in">exit</span></span><br></pre></td></tr></table></figure>
-
+<p>更新MySQL证书权限 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo chown -R <span class="variable">$USER</span>:certusers /etc/mysql/.ssh</span><br><span class="line">sudo chmod -R 750 /etc/mysql/.ssh</span><br></pre></td></tr></table></figure></p>
+<p>修改MySQL配置文件测试证书可用 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo nano /etc/mysql/mariadb.conf.d/50-mysql-clients.cnf</span><br></pre></td></tr></table></figure></p>
+<p>在<code>[client]</code>中加入以下代码（若没有<code>[client]</code>则自己添加） <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ssl-ca=/etc/mysql/.ssh/ca.pem</span><br><span class="line">ssl-cert=/etc/mysql/.ssh/client-cert.pem</span><br><span class="line">ssl-key=/etc/mysql/.ssh/client-key.pem</span><br></pre></td></tr></table></figure></p>
+<p>测试链接到Panel服务器，其中<code>&lt;Panel Server&gt;</code>改为Panel服务器的IP或域名 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql -u trojan -h &lt;Panel Server&gt; -p</span><br></pre></td></tr></table></figure></p>
+<p>检测是否使用SSL链接并退出MySQL <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">status</span><br><span class="line"><span class="built_in">exit</span></span><br></pre></td></tr></table></figure></p>
 <p>编辑Trojan配置文件，在<code>mysql</code>项中：1. <code>enable</code>改为<code>true</code>；2. <code>server_addr</code>填入Panel服务器域名；3. <code>password</code>填入配置数据库时为Trojan服务器设置的访问密码；4. <code>key</code>，<code>cert</code>，<code>ca</code>分别填入<code>/etc/mysql/.ssh/client-key.pem</code>，<code>/etc/mysql/.ssh/client-cert.pem</code>，<code>/etc/mysql/.ssh/ca.pem</code>。重启Trojan，并检查状态。</p>
 <p><strong><em>可选：</em></strong>修改Trojan服务器的Nginx配置文件，反代地址改为Panel服务器地址，这样Trojan服务器可以作为Panel服务器的镜像存在，改完记得重启nginx。</p>
-<h3 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h3><p>Trojan客户端填入Trojan服务器地址和Panel中用户名密码测试是否可以正常使用。</p>
-<h3 id="原理参考"><a href="#原理参考" class="headerlink" title="原理参考"></a>原理参考</h3><p><a href="https://stackoverflow.com/questions/42145925/mariadb-over-ssl-not-working-certificate-verify-failed" target="_blank" rel="noopener">MariaDB over SSL not working, “certificate verify failed”</a></p>
+<h3 id="测试">测试</h3>
+<p>Trojan客户端填入Trojan服务器地址和Panel中用户名密码测试是否可以正常使用。</p>
+<h3 id="原理参考">原理参考</h3>
+<p><a href="https://stackoverflow.com/questions/42145925/mariadb-over-ssl-not-working-certificate-verify-failed" target="_blank" rel="noopener">MariaDB over SSL not working, “certificate verify failed”</a></p>
 
       
     </div>
@@ -558,11 +533,11 @@
         
         <div class="post-tags">
           
+            <a href="/tags/Trojan/" rel="tag"># Trojan</a>
+          
             <a href="/tags/MySQL/" rel="tag"># MySQL</a>
           
             <a href="/tags/remote/" rel="tag"># remote</a>
-          
-            <a href="/tags/Trojan/" rel="tag"># Trojan</a>
           
             <a href="/tags/Panel/" rel="tag"># Panel</a>
           
@@ -760,7 +735,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#期望效果"><span class="nav-number">1.</span> <span class="nav-text">期望效果</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#前置条件"><span class="nav-number">2.</span> <span class="nav-text">前置条件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Panel服务器配置"><span class="nav-number">3.</span> <span class="nav-text">Panel服务器配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Trojan服务器配置"><span class="nav-number">4.</span> <span class="nav-text">Trojan服务器配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#测试"><span class="nav-number">5.</span> <span class="nav-text">测试</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#原理参考"><span class="nav-number">6.</span> <span class="nav-text">原理参考</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#期望效果"><span class="nav-number">1.</span> <span class="nav-text">期望效果</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#前置条件"><span class="nav-number">2.</span> <span class="nav-text">前置条件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#panel服务器配置"><span class="nav-number">3.</span> <span class="nav-text">Panel服务器配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#trojan服务器配置"><span class="nav-number">4.</span> <span class="nav-text">Trojan服务器配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#测试"><span class="nav-number">5.</span> <span class="nav-text">测试</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#原理参考"><span class="nav-number">6.</span> <span class="nav-text">原理参考</span></a></li></ol></div>
             
 
           </div>
